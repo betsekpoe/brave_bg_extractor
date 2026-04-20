@@ -8,6 +8,8 @@ def delay(duration = 0.3):
 
 
 def download_wallpaper():
+    # Open DevTools and copy the current element text to the clipboard.
+    # `get_url_from_clipboard()` turns that copied text into a Brave wallpaper URL.
     pgui.hotkey("ctrl", "shift", "i")
     delay(1)
     pgui.hotkey("ctrl", "c")
@@ -22,6 +24,7 @@ def download_wallpaper():
 
 def download_random():
     try:
+        # Grab any open Brave window (titles usually end with "- Brave").
         brave_windows_list = pgui.getWindowsWithTitle("- Brave")
 
         brave_window = brave_windows_list[0]
@@ -37,6 +40,7 @@ def download_random():
 def download_open_tab():
     try:
         delay()
+        # This targets the tab created by `download_random()` before downloading.
         pgui.getWindowsWithTitle("New Tab - Brave")[0].activate()
 
         download_wallpaper()
